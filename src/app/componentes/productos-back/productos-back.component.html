@@ -1,0 +1,36 @@
+<div class="p-5 mb-4 bg-success bg-opacity-75 rounded-3">
+  <h2 class="display-2">Productos Back</h2>
+  <hr>
+
+  <h3>Obtener los productos</h3>
+
+  <button
+      class="btn btn-primary"
+      (click)="obtenerProductos()"
+  >
+      Obtener Productos (READ|GET)
+  </button>
+
+  <button
+      class="btn btn-info ms-3"
+      (click)="guardarProducto()"
+  >
+      Crear producto (CREATE|POST)
+  </button>
+
+  <div class="row">
+    <div class="col">
+      @for (producto of productos; track $index; let orden = $index) {
+        <div class="d-flex alert alert-warning mt-3">
+          <div class="flex-shrink-1 ms-3">
+            <h4>Producto: {{orden+1}} - ID {{ producto.id }}</h4>
+            <hr>
+            <p>Nombre: <b> {{ producto.nombre }}</b></p>
+            <p>Precio: <i> ${{ producto.precio }}</i></p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+</div>

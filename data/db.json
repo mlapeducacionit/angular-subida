@@ -1,0 +1,44 @@
+{
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "PC",
+      "precio": 123
+    },
+    {
+      "id": "2",
+      "nombre": "Notebook",
+      "precio": 223
+    },
+    {
+      "id": "3",
+      "nombre": "Tablet",
+      "precio": 113
+    },
+    {
+      "id": "4",
+      "nombre": "Celular",
+      "precio": 423
+    },
+    {
+      "id": "b2cc",
+      "nombre": "Impresora",
+      "precio": 333
+    },
+    {
+      "id": "2cca",
+      "nombre": "Mouse",
+      "precio": 22
+    },
+    {
+      "id": "b377",
+      "nombre": "Teclado",
+      "precio": 33
+    },
+    {
+      "id": "3171",
+      "nombre": "Teclado",
+      "precio": 33
+    }
+  ]
+}

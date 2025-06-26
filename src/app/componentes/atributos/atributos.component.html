@@ -1,0 +1,62 @@
+<div class="p-5 mb-4 bg-danger bg-opacity-75 rounded-3">
+  <h2 class="display-2">Atributos</h2>
+
+  <!-- ---------------------------------- -->
+  <h3>Directiva [ngStyle]</h3>
+  <!-- ---------------------------------- -->
+
+  <button class="btn btn-warning mb-3" (click)="estado1=!estado1">
+    Cambiar fondo a {{ estado1 ? 'dorado' : 'azul' }}
+  </button>
+
+  <!-- p>lorem5 -->
+
+  <!-- ! La directiva [ngStyle] necesita un OBJETO -->
+
+  <p [ngStyle]="cambiarPropiedad(estado1)">
+    Lorem ipsum dolor sit amet.
+  </p>
+  <!-- <p [ngStyle]="{
+    backgroundColor: 'blue',
+    color: 'white',
+    padding: '10px',
+    'border-radius': '10px'
+    }">
+    Lorem ipsum dolor sit amet.
+  </p> -->
+
+  <!-- <p [ngStyle]="{ backgroundColor: 'blue', color: 'white', padding: '10px', 'border-radius': '10px'}">Lorem ipsum dolor sit amet.</p> -->
+
+
+  <!-- ---------------------------------- -->
+  <h3>Directiva [ngClass] (Common Module)</h3>
+  <!-- ---------------------------------- -->
+
+  <button class="btn btn-warning mb-3" (click)="estado2=!estado2">
+    Cambiar el fondo {{ estado2 ? 'negro' : 'rojo'}}
+  </button>
+
+  <p [ngClass]="cambiarClase()">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, sit!</p>
+
+  <!-- <p [ngClass]="{ btn: true, 'btn-dark': !estado2, 'btn-danger': estado2}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, sit!</p> -->
+
+  <!-- <p [ngClass]="{ btn: true, 'btn-dark': false, 'btn-danger': true}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, sit!</p> -->
+
+  <!-- <p class="btn btn-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, sit!</p> -->
+
+  <!-- ---------------------------------- -->
+  <h3>Directiva personalizada [appResaltar]</h3>
+  <!-- ---------------------------------- -->
+  <p>Son una herramienta poderoza para extener funcioanlidad de nuestra aplicación y generar código más limpio y reutilizable</p>
+  <p>Son nuevas clases de Typescript que permiten crear un nuevo comportamiento</p>
+
+  <!-- p>lorem20 -->
+  <p
+    appResaltar="red"
+    colorInit="blueviolet"
+    colorEnd="black"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur nisi ratione est neque at architecto natus alias exercitationem unde earum.
+  </p>
+
+</div>

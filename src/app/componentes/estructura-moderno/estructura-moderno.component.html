@@ -1,0 +1,116 @@
+<div class="p-5 mb-4 bg-success bg-opacity-75 rounded-3">
+  <h2 class="display-2">Estructura Moderno</h2>
+
+  <!-- Control Flow Syntax (o Built-in Control flow) -->
+
+  <!-- ------------------------------- -->
+  <h3>Directiva If y else</h3>
+  <!-- ------------------------------- -->
+
+  <button class="btn btn-success mb-3" (click)="mostrar=!mostrar">
+    {{ mostrar ? 'Ocultar' : 'Mostrar' }}
+  </button>
+
+  <!-- p.alert.alert-success>lorem20 -->
+
+
+  @if (mostrar) {
+    <p class="alert alert-success">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet quam itaque reprehenderit illo non nostrum necessitatibus optio nam fugiat nemo.</p>
+  } @else {
+    <p class="alert alert-danger">
+      Elemento que no se ve cuando el otro está visible
+    </p>
+  }
+
+  <!-- ---------------------------------- -->
+  <h3>Directiva for</h3>
+  <!-- ---------------------------------- -->
+
+  <h4>Array de strings (en una lista)</h4>
+
+  <ul>
+    @for ( persona of personas; track $index; let i = $index) {
+      <li>
+          {{i+1}} - {{ persona }}
+      </li>
+    }
+  </ul>
+
+  <hr>
+
+  <h4>Array de objetos (en una lista)</h4>
+
+  <!-- ! DETALLES -->
+<!--   <pre> {{ alumnos | json }} </pre>
+  <pre> {{ alumnos.length }} </pre> -->
+
+  <button class="btn btn-primary my-3" (click)="agregarAlumno()">Agregar Alumno</button>
+
+  @if (alumnos.length) {
+
+      <ul>
+        @for (alumno of alumnos; track $index; let indice = $index) {
+          <li>
+            <!-- {{ alumno | json }} -->
+            <!-- {{ indice + 1 }} - {{ alumno.nombre}} {{ alumno.apellido }} - Edad: {{ alumno.edad }} -->
+            <!-- ! En versiones 17/18 los template string no funcionan  -->
+            {{ `${(indice + 1)} - ${(alumno.nombre)}` }}
+          </li>
+        }
+      </ul>
+
+      <h4>Array de objetos (en una tabla)</h4>
+
+      <div class="table-responsive">
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Edad</th>
+              <th>Curso</th>
+              <th>Foto</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (alumno of alumnos; track $index) {
+              <tr>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.apellido }}</td>
+                <td>{{ alumno.edad }}</td>
+                <td>{{ alumno.curso ? 'Si':'No'}}</td>
+                <td>
+                  <img [src]="alumno.foto" alt="{{ alumno.nombre }}" width="50px">
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <h5>Array de objetos (en una media object de bootstrap</h5>
+
+      @for ( alumno of alumnos; track $index; let orden = $index) {
+        <div class="d-flex alert alert-warning">
+          <div class="flex-shrink-0">
+            <img [src]="alumno.foto" alt="Foto del {{alumno.nombre}}" width="200px">
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h6>Alumno {{ orden + 1 }}</h6>
+            <hr>
+            <p>Nombre: <b>{{ alumno.nombre }} {{ alumno.apellido}} </b></p>
+            <p>Edad: <i>{{ alumno.edad }}</i></p>
+            <p>Hizo el curso: {{ alumno.curso ? 'Si' : 'No' }}</p>
+            <hr>
+            <button class="btn btn-danger" (click)="borrarAlumno(orden)">Borrar</button>
+          </div>
+        </div>
+      }
+
+  } @else {
+    <h6 class="alert alert-danger">No se encontraron alumnos</h6>
+  }
+
+</div>

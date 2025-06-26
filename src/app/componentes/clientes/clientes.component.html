@@ -1,0 +1,32 @@
+<div class="p-5 mb-4 bg-success bg-opacity-75 rounded-3">
+
+  <h2>Navegar a Productos</h2>
+
+  <button class="btn btn-info" (click)="verProductos()">Ver Productos</button>
+
+  <button class="btn btn-primary" (click)="verProductosParametros()">Ver Productos P</button>
+  <button class="btn btn-secondary" (click)="verProductosConQueryParams()">Ver Productos QP</button>
+
+  <h2 class="display-2">Clientes</h2>
+  <hr>
+
+  <!-- INPUT -->
+  <input type="text" [(ngModel)]="cliente">
+  <!-- BUTTON -->
+  <button
+    class="btn btn-success mb-4"
+    (click)="agregarCliente(cliente)"
+  >
+    Agregar Cliente
+  </button>
+
+
+  <ul>
+    @for (cliente of clientes; track $index) {
+      <li>{{ cliente }}</li>
+    }
+  </ul>
+
+
+
+</div>

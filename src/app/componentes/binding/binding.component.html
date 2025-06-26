@@ -1,0 +1,68 @@
+<div class="p-5 mb-4 bg-info bg-opacity-75 rounded-3">
+  <h2 class="display-2">Binding</h2>
+
+  <h3>Listado de clientes desde el servicio</h3>
+
+  <ul>
+    @for (cliente of clientes; track $index) {
+      <li> {{ cliente }}</li>
+    }
+  </ul>
+
+  <button
+    class="btn btn-danger"
+    (click)="borrarCliente()"
+    >
+    Borrar cliente
+  </button>
+
+
+  <h3>Data Binding</h3>
+
+  <!-- ---------------------------- -->
+  <h4>Interpolación</h4>
+  <!-- ---------------------------- -->
+
+  <p> {{ 5 + 2 }} </p>
+
+  <p> {{ mensaje }} </p>
+
+  <!-- ---------------------------- -->
+  <h4>Property Binding</h4>
+  <!-- ---------------------------- -->
+
+  <input type="text" value="123">
+  <div class="w-100"></div>
+
+  <input type="text" value="valor1">
+
+  <div class="w-100"></div>
+  <input type="text" value="{{valor1}}">
+
+  <div class="w-100"></div>
+  <input type="text" [value]="valor2">
+
+  <hr>
+
+  <!-- ---------------------------- -->
+  <h4>Event Binding</h4>
+  <!-- ---------------------------- -->
+  <!-- https://docs.emmet.io/cheat-sheet/ -->
+  <!-- button.btn.btn-success.my-2{Incrementar} -->
+  <button class="btn btn-success my-2" (click)="contador=contador+1">Incrementar: {{contador}}</button>
+
+  <!-- ---------------------------- -->
+  <h4>Doble Data Binding</h4>
+  <!-- ---------------------------- -->
+
+  <h5>Manual</h5>
+
+  <input type="text" [value]="valor3" (input)="modificar($event)"> {{ valor3 }}
+
+  <h5>Automático</h5>
+  <!-- ngModel <---- directivas (buildin -> dentro de la framework de angular) -->
+
+  <input type="text" [(ngModel)]="valor4"> {{ valor4 }}
+
+</div>
+

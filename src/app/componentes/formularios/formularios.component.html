@@ -1,0 +1,272 @@
+<div class="p-5 mb-4 bg-warning bg-opacity-75 rounded-3">
+  <h2 class="display-2">Formularios</h2>
+
+  <!-- ! Template Driven Forms -->
+  <!-- Se basa de directivas en las plantillas HTML para crear y gestionar el formulario -->
+   <!-- * https://angular.dev/guide/forms/template-driven-forms -->
+  <h3>Template Driven Forms</h3>
+
+  <!-- #loginForm (referencia / variable de template) -->
+  <form #loginForm="ngForm" (ngSubmit)="enviar(loginForm)">
+
+    <!-- DEBUG -->
+     <input
+      type="button"
+      class="btn btn-info"
+      (click)="logNombreControl(nombreControl)"
+      value="log nombreControl"
+    >
+
+    <!-- ----------------------------- -->
+    <!-- Campo nombre  -->
+    <!-- ----------------------------- -->
+
+    <div class="mb-3">
+      <label for="lbl-nombre" class="form-label">Nombre</label>
+      <input
+        #nombreControl="ngModel"
+        [(ngModel)]="form.nombre"
+        type="text"
+        class="form-control"
+        id="lbl-nombre"
+        placeholder="Ingrese su nombre. Ej: Maxi, Luis"
+        name="nombre"
+        required
+        minlength="4"
+      >
+    </div>
+
+    <!-- Mensajes de validación -->
+    <!-- errors es nulo cuando no hay errores -->
+    <!-- Notación punto | notación corchete -->
+    <!-- obj = { nombre: 'Maxi', apellido: 'Principe'} -->
+    <!-- notación punto -> obj.nombre -->
+    <!-- notación corchete -> obj['nombre'] -->
+    <!-- let key = 'nombre' -->
+    <!-- notación corchete -> obj[key] -->
+    <!--              false          &&       true         &&         false          -->
+    <div *ngIf="nombreControl.errors && nombreControl.dirty && nombreControl.invalid" class="alert alert-danger mt-2">
+      <p *ngIf="nombreControl.errors['required']">Campo requerido</p>
+      <p *ngIf="nombreControl.errors['minlength']">Este campo debe poseer al menos 4 caracteres</p>
+    </div>
+
+    <!-- ----------------------------- -->
+    <!-- Campo apellido  -->
+    <!-- ----------------------------- -->
+
+    <div class="mb-3">
+      <label for="lbl-apellido" class="form-label">Apellido</label>
+      <input
+        #apellidoControl="ngModel"
+        [(ngModel)]="form.apellido"
+        type="text"
+        class="form-control"
+        id="lbl-apellido"
+        placeholder="Ingrese su apellido. Ej: Principe, Gimenez"
+        name="apellido"
+        required
+        minlength="4"
+        maxlength="8"
+      >
+    </div>
+
+     <div *ngIf="apellidoControl.errors && apellidoControl.dirty && apellidoControl.invalid" class="alert alert-danger mt-2">
+      <p *ngIf="apellidoControl.errors['required']">Campo requerido</p>
+      <p *ngIf="apellidoControl.errors['minlength']">Este campo debe poseer al menos 4 caracteres</p>
+      <p *ngIf="apellidoControl.errors['maxlength']">Este campo debe poseer como máximo 8 caracteres</p>
+    </div>
+
+    <!-- ----------------------------- -->
+    <!-- Campo edad  -->
+    <!-- ----------------------------- -->
+     <div class="mb-3">
+      <label for="lbl-edad" class="form-label">Edad</label>
+      <input
+        #edadControl="ngModel"
+        [(ngModel)]="form.edad"
+        type="number"
+        class="form-control"
+        id="lbl-edad"
+        placeholder="Ingrese su edad. Ej: 22, 80"
+        name="edad"
+        required
+      >
+    </div>
+
+    <!-- ----------------------------- -->
+    <!-- Campo email  -->
+    <!-- ----------------------------- -->
+    <div class="mb-3">
+      <label for="lbl-correo" class="form-label">Correo</label>
+      <input
+        #correoControl="ngModel"
+        [(ngModel)]="form.correo"
+        type="email"
+        class="form-control"
+        id="lbl-correo"
+        placeholder="Ingrese su correo. Ej: maxi@gmail.com, luis@hotmail.com"
+        name="correo"
+        required
+      >
+    </div>
+
+    <!-- ----------------------------- -->
+    <!-- Campo password  -->
+    <!-- ----------------------------- -->
+    <!-- https://www.w3schools.com/tags/att_input_pattern.asp -->
+    <!-- https://www.w3schools.com/js/js_regexp.asp -->
+    <!-- https://regex101.com/ -->
+    <!-- https://regexr.com/ -->
+    <div class="mb-3">
+      <label for="lbl-password" class="form-label">Contraseña</label>
+      <input
+        #passwordControl="ngModel"
+        [(ngModel)]="form.password"
+        type="password"
+        class="form-control"
+        id="lbl-password"
+        placeholder="Ingrese su contraseña. Debe cumplir con las políticas indicadas.."
+        name="password"
+        required
+      >
+    </div>
+
+
+    <!-- <button class="btn btn-success mt-4" disabled="{{loginForm.invalid}}">Enviar</button> -->
+    <button class="btn btn-success mt-4" [disabled]="loginForm.invalid">Enviar</button>
+  </form>
+
+  <!-- ! Reactive Forms -->
+   <!-- Se basa en un modelo de programación reactiva para crear y gestionar el componente. Se escribe dentro dle código Typescript -->
+  <!-- * https://angular.dev/guide/forms/reactive-forms -->
+  <h3>Reactive Forms</h3>
+
+  <form [formGroup]="f" (ngSubmit)="enviarRf()">
+
+    <div class="mb-3">
+      <label for="lbl-nombre" class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lbl-nombre-rf"
+        placeholder="Ingrese su nombre. Ej: Maxi, Luis"
+        name="nombre"
+        formControlName="nombre"
+      >
+    </div>
+
+    <div *ngIf="f.controls['nombre'].errors && f.controls['nombre'].dirty && f.controls['nombre'].invalid" class="alert alert-danger">
+
+      <p *ngIf="f.controls['nombre'].errors['minlength']">
+        Este campo debe poseer al menos {{sizeMinNombre}} caracteres
+      </p>
+
+      <p *ngIf="f.controls['nombre'].errors['maxlength']">
+        Este campo debe poseer como máximo {{sizeMaxNombre}} caracteres
+      </p>
+
+      <p *ngIf="f.controls['nombre'].errors['required']">Campo requerido</p>
+
+      <p *ngIf="f.controls['nombre'].errors['conEspacios']">
+        {{f.controls['nombre'].errors['conEspacios']}}
+      </p>
+
+    </div>
+
+
+    <div class="mb-3">
+      <label for="lbl-apellido" class="form-label">Apellido</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lbl-apellido-rf"
+        placeholder="Ingrese su apellido. Ej: Principe, Rodriguez"
+        name="apellido"
+        formControlName="apellido"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="lbl-edad" class="form-label">Edad</label>
+      <input
+        type="number"
+        class="form-control"
+        id="lbl-edad-rf"
+        placeholder="Ingrese su edad. Ej: 22, 45"
+        name="edad"
+        formControlName="edad"
+      >
+    </div>
+
+    <!-- ------------------- -->
+     <!-- GRUPO contacto -->
+    <!-- ------------------- -->
+
+    <div formGroupName="contacto">
+
+      <!-- ------------------- -->
+      <!-- CORREO -->
+      <!-- ------------------- -->
+
+      <div class="mb-3">
+        <label for="lbl-correo" class="form-label">Correo</label>
+        <input
+          type="email"
+          class="form-control"
+          id="lbl-correo-rf"
+          placeholder="Ingrese su correo. Ej: max@gmail.com"
+          name="correo"
+          formControlName="correo"
+        >
+      </div>
+
+      <!-- ------------------- -->
+      <!-- TELOFONO -->
+      <!-- ------------------- -->
+
+      <div class="mb-3">
+        <label for="lbl-telefono" class="form-label">telefono</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="lbl-telefono-rf"
+          placeholder="Ingrese su telefono. Ej: 11 4455 7788"
+          name="telefono"
+          formControlName="telefono"
+        >
+      </div>
+
+    </div> <!-- formGroupName="contacto" -->
+
+    <div class="mb-3">
+      <label for="lbl-password" class="form-label">password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="lbl-password-rf"
+        placeholder="Ingrese su password."
+        name="password"
+        formControlName="password"
+      >
+    </div>
+
+    <!-- Botón de enviar -->
+     <button type="submit" class="btn btn-success my-3" [disabled]="f.invalid">Enviar</button>
+
+  </form>
+
+  <hr>
+
+  <!-- DEBUG -->
+
+  <h5>Errores del campo nombre con Reactive Form</h5>
+  <pre><p>{{ f.controls['nombre'].errors | json }}</p></pre>
+   <h5>Errores del campo apellido con Reactive Form</h5>
+  <pre><p>{{ f.controls['apellido'].errors | json }}</p></pre>
+
+  <h5>Datos del Reactive form</h5>
+
+  <pre><p>{{ f.value | json }}</p></pre>
+
+
+</div>

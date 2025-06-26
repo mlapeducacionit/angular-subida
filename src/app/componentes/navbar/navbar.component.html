@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Educación IT</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/binding" routerLinkActive="active">Binding</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/atributos" routerLinkActive="active">Atributos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/formularios" routerLinkActive="active">Formularios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/estructura" routerLinkActive="active">Estructura</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/estructura-moderno" routerLinkActive="active">Estructura Moderno</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/productos-back" routerLinkActive="active">Productos Back</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/clientes" routerLinkActive="active">Clientes</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/productos', 123]" routerLinkActive="active">Ver Producto ID: 123</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/productos']" [queryParams]="{ categoria: 'electro', orden: 'precio'}" routerLinkActive="active">Ver Producto QP</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
